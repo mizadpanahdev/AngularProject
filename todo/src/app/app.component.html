@@ -1,9 +1,48 @@
-<<<<<<< HEAD
-<h2>
-  {{userName}}'s have below items:
-  <h3>{{itemcounter()}} </h3>
-</h2>
-=======
-<h3 class="bg-primary text-center text-white p-2">لیست کارهای در جریان</h3>
->>>>>>> 37cd4ffd8e1ec19c01dc9405ce7130a0bfa81dfc
+
+<h3 class="bg-primary text-center text-white p-2">لیست کارهای در جریان
+<h2 class="mt-1"> تعداد {{itemCount}}  </h2>
+</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="لطفا تسک خود را وارد نمایید" #todo/>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="addItem(todo.value)" >افزودن</button>
+        </div>
+    </div>
+</div>         
+<div class="table-responsive mt-5 ">
+    <table class="table table-striped table-bordered">
+        <thead><th>#</th>
+        <th>description</th>
+        <th>done</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items, let i=index">
+            <td>{{i}} </td>
+            <td>{{item.task}} </td>
+            <td><input type="checkbox" [(ngModel)]="item.complete" /></td>
+            <td [ngSwitch]="item.complete" > 
+                <span *ngSwitchCase="true" >Yes</span>
+                <span *ngSwitchDefault>No</span>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<div class="bg-secondary text-white text-center p-2">
+    <input  class="form-check-input" type="checkbox" [(ngModel)]="showcomplete"/>
+    <label for="" class="form-check-label">نمایش تسک های کامل شده</label>
+</div>
+
+
+<style>
+    .text{
+        text-align: center;
+        color: blue;
+        font-size: 18px;
+    }
+</style>
+
 <router-outlet></router-outlet>
